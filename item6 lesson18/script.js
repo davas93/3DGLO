@@ -29,14 +29,24 @@ window.addEventListener('DOMContentLoaded', () => {
 			return { toDay, timeRemaining, time };
 		};
 
-		setInterval(() => {
-			const timer = getTime();
+		const idInterval = setInterval(() => {
+			const timer = getTime(),
+				hour = new Date().getHours();
+
+			if (hour >= 5 && hour < 12) {
+				welcome.textContent = 'Доброе утро';
+			} else if (hour >= 12 && hour < 18) {
+				welcome.textContent = 'Добрый день';
+			} else if (hour >= 18 && hour < 24) {
+				welcome.textContent = 'Добрый вечер';
+			} else if (hour >= 0 && hour < 5) {
+				welcome.textContent = 'Доброй ночи';
+			}
+
 			weekday.textContent = timer.toDay;
 			currentTime.textContent = timer.time;
-			daysLeft.textContent = `${timer.timeRemaining} 
-				${getNoun(timer.timeRemaining, 'день', 'дня', 'дней')}`;
 
-			function getNoun(number, one, two, five) {
+			const getNoun = (number, one, two, five) => {
 				let n = Math.abs(number);
 				n %= 100;
 				if (n >= 5 && n <= 20) {
@@ -50,10 +60,17 @@ window.addEventListener('DOMContentLoaded', () => {
 					return two;
 				}
 				return five;
+			};
+
+			daysLeft.textContent = `${timer.timeRemaining} 
+                ${getNoun(timer.timeRemaining, 'день', 'дня', 'дней')}`;
+
+			if (timer.timeRemaining <= 0) {
+				clearInterval(idInterval);
+				feedbacReport.textContent = 'C Новым Годом Ура! Ура! Ураааааа!';
 			}
-			console.log();
 		}, 1000);
 	};
 
-	countTimer('16 January 2021');
+	countTimer('1 January 2021');
 });
