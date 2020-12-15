@@ -80,10 +80,22 @@ window.addEventListener('DOMContentLoaded', () => {
 			popupBtns = document.querySelectorAll('.popup-btn'),
 			popupClose = document.querySelector('.popup-close'),
 			popupContent = document.querySelector('.popup-content');
+		let count = -500;
+
+		const animatePopup = () => {
+			popupContent.style.transform = `translateX(${count}px)`;
+			count += 20;
+			if (count < 0) {
+				requestAnimationFrame(animatePopup);
+			} else {
+				cancelAnimationFrame(animatePopup);
+			}
+		};
 
 		popupBtns.forEach((elem) => {
 			elem.addEventListener('click', () => {
 				popup.style.display = 'block';
+				requestAnimationFrame(animatePopup);
 			});
 		});
 
