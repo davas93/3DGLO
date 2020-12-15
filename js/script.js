@@ -101,6 +101,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		popupClose.addEventListener('click', () => {
 			popup.style.display = 'none';
+			count = -500;
 		});
 	};
 	togglePopup();
