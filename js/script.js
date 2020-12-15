@@ -83,12 +83,14 @@ window.addEventListener('DOMContentLoaded', () => {
 		let count = -500;
 
 		const animatePopup = () => {
-			popupContent.style.transform = `translateX(${count}px)`;
-			count += 20;
-			if (count < 0) {
-				requestAnimationFrame(animatePopup);
-			} else {
-				cancelAnimationFrame(animatePopup);
+			if (window.outerWidth >= 768) {
+				popupContent.style.transform = `translateX(${count}px)`;
+				count += 20;
+				if (count < 0) {
+					requestAnimationFrame(animatePopup);
+				} else {
+					cancelAnimationFrame(animatePopup);
+				}
 			}
 		};
 
