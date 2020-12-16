@@ -50,7 +50,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		const idInterval = setInterval(updateClock, 1000);
 	};
-
 	countTimer('18 December 2020');
 
 	//Menu
@@ -74,7 +73,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	toggleMenu();
 
 	//popup
-
 	const togglePopup = () => {
 		const popup = document.querySelector('.popup'),
 			popupBtns = document.querySelectorAll('.popup-btn'),
