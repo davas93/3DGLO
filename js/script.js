@@ -276,7 +276,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	//Calc
 	const calc = (price = 100) => {
-		const input = document.querySelectorAll('.calc-item'),
+		const input = document.querySelectorAll('input.calc-item'),
 			calcBlock = document.querySelector('.calc-block'),
 			calcType = document.querySelector('.calc-type'),
 			calcSquare = document.querySelector('.calc-square'),
