@@ -330,31 +330,40 @@ window.addEventListener('DOMContentLoaded', () => {
 			loadMessage = 'Загрузка...',
 			successMessage = 'Спасибо! Мы скоро с Вами свяжемся';
 
-		const form = document.getElementById('form1');
+		//const form = document.querySelector('body');
 
 		const statusMessage = document.createElement('div');
+		statusMessage.style.color = '#FFFFFF';
 
-		form.addEventListener('submit', (event) => {
-			event.preventDefault();
-			form.appendChild(statusMessage);
-			statusMessage.textContent = loadMessage;
+		document.addEventListener('submit', (event) => {
+			let target = event.target;
 
-			const formData = new FormData(form);
-			let body = {};
+			if (
+				target.matches('#form1') ||
+				target.matches('#form2') ||
+				target.matches('#form3')
+			) {
+				event.preventDefault();
+				target.appendChild(statusMessage);
+				statusMessage.textContent = loadMessage;
 
-			formData.forEach((val, key) => {
-				body[key] = val;
-			});
-			postData(
-				body,
-				() => {
-					statusMessage.textContent = successMessage;
-				},
-				(error) => {
-					statusMessage.textContent = errorMessage;
-					console.error(error);
-				}
-			);
+				const formData = new FormData(target);
+				let body = {};
+
+				formData.forEach((val, key) => {
+					body[key] = val;
+				});
+				postData(
+					body,
+					() => {
+						statusMessage.textContent = successMessage;
+					},
+					(error) => {
+						statusMessage.textContent = errorMessage;
+						console.error(error);
+					}
+				);
+			}
 		});
 
 		const postData = (body, outputData, errorData) => {
