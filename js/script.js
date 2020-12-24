@@ -339,24 +339,28 @@ window.addEventListener('DOMContentLoaded', () => {
 			form.appendChild(statusMessage);
 
 			const request = new XMLHttpRequest();
-			request.open('POST', '../server.php');
-			request.setRequestHeader('Content-Type', 'multipart/form-data');
-			const formData = new FormData(form);
-			request.send(formData);
-
 			request.addEventListener('readystatechange', () => {
 				statusMessage.textContent = loadMessage;
 
 				if (request.readyState !== 4) {
 					return;
 				}
-
 				if (request.status === 200) {
 					statusMessage.textContent = successMessage;
 				} else {
 					statusMessage.textContent = errorMessage;
 				}
 			});
+			request.open('POST', '../server.php');
+			request.setRequestHeader('Content-Type', 'application/json');
+			const formData = new FormData(form);
+			let body = {};
+
+			formData.forEach((val, key) => {
+				body[key] = val;
+			});
+
+			request.send(JSON.stringify(body));
 		});
 	};
 	sendForm();
