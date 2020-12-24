@@ -324,18 +324,23 @@ window.addEventListener('DOMContentLoaded', () => {
 	};
 	calc(100);
 
+	//validate inputs
+	const validInputs = () => {
+		maskPhone('input[name = user_phone]');
+	};
+	validInputs();
+
 	//send-AJAX-form
 	const sendForm = () => {
 		const errorMessage = 'Что-то пошло не так...',
 			loadMessage = 'Загрузка...',
 			successMessage = 'Спасибо! Мы скоро с Вами свяжемся';
 
-		//const form = document.querySelector('body');
-
 		const statusMessage = document.createElement('div');
 		statusMessage.style.color = '#FFFFFF';
 
 		document.addEventListener('submit', (event) => {
+			event.preventDefault();
 			let target = event.target;
 
 			if (
@@ -343,7 +348,12 @@ window.addEventListener('DOMContentLoaded', () => {
 				target.matches('#form2') ||
 				target.matches('#form3')
 			) {
-				event.preventDefault();
+				const input = target.querySelectorAll('input');
+
+				input.forEach((item) => {
+					item.value = '';
+				});
+
 				target.appendChild(statusMessage);
 				statusMessage.textContent = loadMessage;
 
@@ -363,6 +373,8 @@ window.addEventListener('DOMContentLoaded', () => {
 						console.error(error);
 					}
 				);
+			} else {
+				return;
 			}
 		});
 
@@ -380,7 +392,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			});
 			request.open('POST', '../server.php');
 			request.setRequestHeader('Content-Type', 'application/json');
-
 			request.send(JSON.stringify(body));
 		};
 	};
