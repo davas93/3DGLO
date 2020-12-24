@@ -350,10 +350,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			) {
 				const input = target.querySelectorAll('input');
 
-				input.forEach((item) => {
-					item.value = '';
-				});
-
 				target.appendChild(statusMessage);
 				statusMessage.textContent = loadMessage;
 
@@ -373,6 +369,9 @@ window.addEventListener('DOMContentLoaded', () => {
 						console.error(error);
 					}
 				);
+				input.forEach((item) => {
+					item.value = '';
+				});
 			} else {
 				return;
 			}
