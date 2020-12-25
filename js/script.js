@@ -343,9 +343,54 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	//send-AJAX-form
 	const sendForm = () => {
-		const errorMessage = 'Что-то пошло не так...',
-			loadMessage = 'Загрузка...',
-			successMessage = 'Спасибо! Мы скоро с Вами свяжемся';
+		const errorMessage = `<svg
+			class="checkmark error"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 52 52"
+		>
+			<circle
+				class="checkmark_circle_error"
+				cx="26"
+				cy="26"
+				r="25"
+				fill="none"
+			/>
+			<path
+				class="checkmark_check"
+				stroke-linecap="round"
+				fill="none"
+				d="M16 16 36 36 M36 16 16 36
+"
+			/>
+		</svg>
+		<span>Упс! Что-то пошло не так :(</span>`,
+			loadMessage = `<div class="lds-ring">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div><br></br>
+		<span>Пожалуйста, подождите...</span>`,
+			successMessage = `<svg
+			class="checkmark success"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 52 52"
+		>
+			<circle
+				class="checkmark_circle_success"
+				cx="26"
+				cy="26"
+				r="25"
+				fill="none"
+			/>
+			<path
+				class="checkmark_check"
+				fill="none"
+				d="M14.1 27.2l7.1 7.2 16.7-16.8"
+				stroke-linecap="round"
+			/>
+		</svg>
+		<span>Cпасибо за обращение! Мы скоро с Вами свяжемся ;)</span>`;
 
 		const statusMessage = document.createElement('div');
 		statusMessage.style.color = '#FFFFFF';
@@ -362,7 +407,7 @@ window.addEventListener('DOMContentLoaded', () => {
 				const input = target.querySelectorAll('input');
 
 				target.appendChild(statusMessage);
-				statusMessage.textContent = loadMessage;
+				statusMessage.innerHTML = loadMessage;
 
 				const formData = new FormData(target);
 				let body = {};
@@ -373,11 +418,17 @@ window.addEventListener('DOMContentLoaded', () => {
 				postData(
 					body,
 					() => {
-						statusMessage.textContent = successMessage;
+						statusMessage.innerHTML = successMessage;
+						setTimeout(() => {
+							statusMessage.remove();
+						}, 5000);
 					},
 					(error) => {
-						statusMessage.textContent = errorMessage;
+						statusMessage.innerHTML = errorMessage;
 						console.error(error);
+						setTimeout(() => {
+							statusMessage.remove();
+						}, 5000);
 					}
 				);
 				input.forEach((item) => {
