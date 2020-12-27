@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
-  "use strict";
+  ("use strict");
 
   // Timer
   const countTimer = (deadline) => {
@@ -75,6 +75,36 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   };
   toggleMenu();
+
+  //Smooth scrolling
+  const smoothScroll = () => {
+    const links = document.querySelectorAll("menu>ul>li>a"),
+      linkBtn = document.querySelector('main>a[href = "#service-block"');
+    let blockID;
+
+    links.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
+        blockID = item.getAttribute("href");
+
+        document.querySelector(blockID).scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
+
+    linkBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      blockID = linkBtn.getAttribute("href");
+
+      document.querySelector(blockID).scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
+  smoothScroll();
 
   //Popup
   const togglePopup = () => {
