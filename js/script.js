@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		const idInterval = setInterval(updateClock, 1000);
 	};
-	countTimer('18 December 2020');
+	countTimer('31 December 2020');
 
 	//Menu
 	const toggleMenu = () => {
