@@ -444,22 +444,20 @@ window.addEventListener('DOMContentLoaded', () => {
 				formData.forEach((val, key) => {
 					body[key] = val;
 				});
-				postData(
-					body,
-					() => {
+				postData(body)
+					.then(() => {
 						statusMessage.innerHTML = successMessage;
 						setTimeout(() => {
 							statusMessage.remove();
 						}, 5000);
-					},
-					(error) => {
+					})
+					.catch((error) => {
 						statusMessage.innerHTML = errorMessage;
 						console.error(error);
 						setTimeout(() => {
 							statusMessage.remove();
 						}, 5000);
-					}
-				);
+					});
 				input.forEach((item) => {
 					item.value = '';
 				});
@@ -468,21 +466,24 @@ window.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 
-		const postData = (body, outputData, errorData) => {
-			const request = new XMLHttpRequest();
-			request.addEventListener('readystatechange', () => {
-				if (request.readyState !== 4) {
-					return;
-				}
-				if (request.status === 200) {
-					outputData();
-				} else {
-					errorData(request.status);
-				}
+		const postData = (body) => {
+			return new Promise((resolve, reject) => {
+				const request = new XMLHttpRequest();
+
+				request.addEventListener('readystatechange', () => {
+					if (request.readyState !== 4) {
+						return;
+					}
+					if (request.status === 200) {
+						resolve();
+					} else {
+						reject(request.status);
+					}
+				});
+				request.open('POST', './server.php');
+				request.setRequestHeader('Content-Type', 'application/json');
+				request.send(JSON.stringify(body));
 			});
-			request.open('POST', '../server.php');
-			request.setRequestHeader('Content-Type', 'application/json');
-			request.send(JSON.stringify(body));
 		};
 	};
 	sendForm();
