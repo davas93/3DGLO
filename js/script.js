@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-	'use strict';
+	('use strict');
 
 	// Timer
 	const countTimer = (deadline) => {
@@ -54,24 +54,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	//Menu
 	const toggleMenu = () => {
-		const btnMenu = document.querySelector('.menu'),
-			menu = document.querySelector('menu');
+		const menu = document.querySelector('menu');
 
 		const handlerMenu = () => {
 			menu.classList.toggle('active-menu');
 		};
 
-		btnMenu.addEventListener('click', handlerMenu);
-		menu.addEventListener('click', (event) => {
+		document.addEventListener('click', (event) => {
 			let target = event.target;
-			if (target.classList.contains('close-btn')) {
-				handlerMenu();
-			} else {
-				target = event.target.closest('li');
 
-				if (!target) return;
-				if (!menu.contains(target)) return;
+			if (
+				target.closest('.menu') ||
+				target.matches('.close-btn') ||
+				target.closest('menu>ul>li')
+			) {
 				handlerMenu();
+			} else if (!target.matches('.active-menu')) {
+				menu.classList.remove('active-menu');
 			}
 		});
 	};
