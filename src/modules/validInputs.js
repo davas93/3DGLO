@@ -8,7 +8,7 @@ const validInputs = () => {
 			target.matches('input[name = user_message]') ||
 			target.matches('input[name = user_name]')
 		) {
-			target.value = target.value.replace(/[^а-яА-Я\s]+/g, '');
+			target.value = target.value.replace(/[^а-яА-Я.:,!?-\s]+/g, '');
 		}
 	});
 };

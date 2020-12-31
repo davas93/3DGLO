@@ -148,7 +148,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar validInputs = function validInputs() {\n  maskPhone('input[name = user_phone]');\n  document.addEventListener('input', function (event) {\n    var target = event.target;\n\n    if (target.matches('input[name = user_message]') || target.matches('input[name = user_name]')) {\n      target.value = target.value.replace(/[^а-яА-Я\\s]+/g, '');\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validInputs);\n\n//# sourceURL=webpack://3DGLO/./src/modules/validInputs.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar validInputs = function validInputs() {\n  maskPhone('input[name = user_phone]');\n  document.addEventListener('input', function (event) {\n    var target = event.target;\n\n    if (target.matches('input[name = user_message]') || target.matches('input[name = user_name]')) {\n      target.value = target.value.replace(/[^а-яА-Я.:,!?-\\s]+/g, '');\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validInputs);\n\n//# sourceURL=webpack://3DGLO/./src/modules/validInputs.js?");
 
 /***/ }),
 
@@ -543,7 +543,7 @@ eval("var map = {\n\t\"./log\": \"./node_modules/webpack/hot/log.js\"\n};\n\n\nf
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => "2c5e7538f11d8452885c"
+/******/ 		__webpack_require__.h = () => "b0f08e72cbc9813c5c29"
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
