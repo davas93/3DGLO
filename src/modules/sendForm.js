@@ -1,4 +1,8 @@
 const sendForm = () => {
+	const inputs = document.querySelectorAll('input[type = email]');
+	inputs.forEach((item) => {
+		item.setAttribute('required', true);
+	});
 	const errorMessage = `<svg
 			class="checkmark error"
 			xmlns="http://www.w3.org/2000/svg"
