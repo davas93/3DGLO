@@ -43,7 +43,7 @@ const countTimer = (deadline) => {
 			clearInterval(idInterval);
 		}
 	};
-
+	updateClock();
 	const idInterval = setInterval(updateClock, 1000);
 };
 

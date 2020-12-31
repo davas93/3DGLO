@@ -12,7 +12,7 @@ import validInputs from './modules/validInputs';
 import sendForm from './modules/sendForm';
 
 // Timer
-countTimer('31 December 2020');
+countTimer('3 January 2021');
 //Menu
 toggleMenu();
 //Smooth scrolling
