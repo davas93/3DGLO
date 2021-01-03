@@ -11,10 +11,10 @@ const toggleMenu = () => {
 		if (
 			target.closest('.menu') ||
 			target.matches('.close-btn') ||
-			target.closest('menu>ul>li')
+			target.closest('menu>ul>li>a')
 		) {
 			handlerMenu();
-		} else if (!target.matches('.active-menu')) {
+		} else if (!target.closest('.active-menu')) {
 			menu.classList.remove('active-menu');
 		}
 	});
