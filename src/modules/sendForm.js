@@ -79,10 +79,10 @@ const sendForm = () => {
 				input[1].style.border = '';
 			}
 
-			if (input[2].value.length < 7) {
+			if (input[2].value.length < 15) {
 				input[2].style.border = '1px solid red';
 				alert(
-					'Поле телефон должно быть заполнено (Кол-во символов не менее 7)'
+					'Поле телефон должно быть заполнено (Кол-во цифр не менее 9)'
 				);
 				return;
 			} else {
