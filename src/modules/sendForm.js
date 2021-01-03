@@ -1,8 +1,4 @@
 const sendForm = () => {
-	const inputs = document.querySelectorAll('input[type = email]');
-	inputs.forEach((item) => {
-		item.setAttribute('required', true);
-	});
 	const errorMessage = `<svg
 			class="checkmark error"
 			xmlns="http://www.w3.org/2000/svg"
@@ -65,6 +61,41 @@ const sendForm = () => {
 			target.matches('#form3')
 		) {
 			const input = target.querySelectorAll('input');
+			if (input[0].value.length < 2) {
+				input[0].style.border = '1px solid red';
+				alert(
+					'Поле имя должно быть заполнено (Кол-во символов не менее 2)'
+				);
+				return;
+			} else {
+				input[0].style.border = '';
+			}
+
+			if (!input[1].value) {
+				input[1].style.border = '1px solid red';
+				alert('Поле e-mail должно быть заполнено');
+				return;
+			} else {
+				input[1].style.border = '';
+			}
+
+			if (input[2].value.length < 7) {
+				input[2].style.border = '1px solid red';
+				alert(
+					'Поле телефон должно быть заполнено (Кол-во символов не менее 7)'
+				);
+				return;
+			} else {
+				input[2].style.border = '';
+			}
+
+			if (!input[3].value) {
+				input[3].style.border = '1px solid red';
+				alert('Поле сообщение должно быть заполнено');
+				return;
+			} else {
+				input[3].style.border = '';
+			}
 
 			target.appendChild(statusMessage);
 			statusMessage.innerHTML = loadMessage;
