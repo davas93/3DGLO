@@ -67,16 +67,11 @@ const sendForm = () => {
 					'Поле имя должно быть заполнено (Кол-во символов не менее 2)'
 				);
 				return;
-			} else {
-				input[0].style.border = '';
 			}
-
 			if (!input[1].value) {
 				input[1].style.border = '1px solid red';
 				alert('Поле e-mail должно быть заполнено');
 				return;
-			} else {
-				input[1].style.border = '';
 			}
 
 			if (input[2].value.length < 15) {
@@ -85,16 +80,11 @@ const sendForm = () => {
 					'Поле телефон должно быть заполнено (Кол-во цифр не менее 9)'
 				);
 				return;
-			} else {
-				input[2].style.border = '';
 			}
-
-			if (!input[3].value) {
+			if (input[3] && !input[3].value) {
 				input[3].style.border = '1px solid red';
 				alert('Поле сообщение должно быть заполнено');
 				return;
-			} else {
-				input[3].style.border = '';
 			}
 
 			target.appendChild(statusMessage);
